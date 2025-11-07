@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://7wmdhgp5iqkh"]
+[gd_scene load_steps=3 format=3 uid="uid://7wmdhgp5iqkh"]
 
 [ext_resource type="PackedScene" uid="uid://2e3s4qvmjv2b" path="res://ui/ui.tscn" id="1_3fham"]
+[ext_resource type="Script" uid="uid://cjklmes3h07pu" path="res://game/main_game.gd" id="1_7of5j"]
 
 [node name="MainGame" type="Node3D"]
+script = ExtResource("1_7of5j")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

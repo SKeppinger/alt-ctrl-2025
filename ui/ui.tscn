@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://2e3s4qvmjv2b"]
+[gd_scene load_steps=2 format=3 uid="uid://2e3s4qvmjv2b"]
+
+[ext_resource type="PackedScene" uid="uid://ck6neoc2q7wsy" path="res://ui/map_ui.tscn" id="1_nb4k0"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -8,7 +10,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="MapUi" parent="." instance=ExtResource("1_nb4k0")]
 layout_mode = 0
-offset_right = 640.0
-offset_bottom = 760.0

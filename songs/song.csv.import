@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cwfhmbyf4vr5h"
+valid=false
+
+[deps]
+
+source_file="res://songs/song.csv"
+
+[params]
+
+compress=true
+delimiter=0

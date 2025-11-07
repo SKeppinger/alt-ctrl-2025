@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck6neoc2q7wsy"]
+
+[ext_resource type="Script" uid="uid://d0pntlyqdys8p" path="res://game/map.gd" id="1_raqrw"]
+
+[node name="MapUi" type="PanelContainer"]
+offset_right = 640.0
+offset_bottom = 760.0
+script = ExtResource("1_raqrw")
