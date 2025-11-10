@@ -1,3 +1,5 @@
-Trigger,1.0,0.5,NoPush,false
-Switch,1.75,0.25,NoPush,false
-Trigger,4.0,5.0,PartialPush,false
+Push,1.0,0.25,FullPush,false
+Push,3.0,0.5,PartialPush,false
+Trigger,3.0,0.5,PartialPush,false
+Switch,3.75,0.25,NoPush,false
+Trigger,5.0,5.0,PartialPush,false
