@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1adbuq7anqvb"]
+
+[ext_resource type="Script" uid="uid://bbwlbm8jtqw2i" path="res://game/read_serial_input.gd" id="1_niyhm"]
+
+[node name="ReadSerialInput" type="Node2D"]
+script = ExtResource("1_niyhm")
