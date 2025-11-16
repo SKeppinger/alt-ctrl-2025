@@ -3,6 +3,8 @@ extends Node2D
 var serial: GdSerial
 var port = "COM4" # changes based on system and whether we are using arduino serial or rs232
 
+signal drill_press # Signal to emit when the drill button is first pressed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	serial = GdSerial.new()
@@ -31,6 +33,9 @@ func _process(delta: float) -> void:
 			var force_sensor_1_value = int(input_state_arr[3])
 			var force_sensor_2_value = int(input_state_arr[4])
 			var force_sensor_3_value = int(input_state_arr[5])
+			
+			if not drill_controller_states.button_state and button_state:
+				drill_press.emit()
 			
 			drill_controller_states.button_state = button_state
 			drill_controller_states.switch_state = switch_state

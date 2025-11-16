@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://i835a8iiw70t"]
+
+[ext_resource type="PackedScene" uid="uid://cw715hy5i0hvr" path="res://models/chair/chair_leg.fbx" id="1_ct6mf"]
+[ext_resource type="Material" uid="uid://broo5f0xn36b1" path="res://textures/chair/new_standard_material_3d.tres" id="2_ro6i5"]
+
+[sub_resource type="Animation" id="Animation_081ba"]
+resource_name = "start"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_upqd7"]
+_data = {
+&"start": SubResource("Animation_081ba")
+}
+
+[node name="ChairAnimation" type="AnimationPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_upqd7")
+}
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="chair_leg" parent="Entities" instance=ExtResource("1_ct6mf")]
+
+[node name="pCube3" parent="Entities/chair_leg" index="0"]
+transform = Transform3D(3, 0, 0, 0, 11.703, 0, 0, 0, 3, 0.024309007, 0.00065422495, 0.019638374)
+surface_material_override/0 = ExtResource("2_ro6i5")
+
+[editable path="Entities/chair_leg"]

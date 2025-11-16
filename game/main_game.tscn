@@ -8,6 +8,8 @@ script = ExtResource("1_7of5j")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
 [node name="UI" parent="." instance=ExtResource("1_3fham")]
 
 [connection signal="full_press" from="." to="UI/MapUi" method="_on_full_press"]

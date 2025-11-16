@@ -21,8 +21,8 @@ func _process(delta):
 		full_press.emit()
 	if Input.is_action_just_pressed("switch"):
 		switch.emit()
-	if Input.is_action_just_pressed("trigger"):
-		trigger.emit()
+	#if Input.is_action_just_pressed("trigger"):
+		#trigger.emit()
 	# Note holds
 	for note in $UI/MapUi.get_held_notes():
 		if not note.was_missed:
@@ -49,6 +49,9 @@ func _process(delta):
 						note.miss()
 					elif not note.was_hit:
 						note.hit()
+
+func _on_drill_press():
+	trigger.emit()
 
 func _load_note(note):
 	note.hit_note.connect(score)
