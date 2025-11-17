@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://7wmdhgp5iqkh"]
+
+[ext_resource type="PackedScene" uid="uid://2e3s4qvmjv2b" path="res://ui/ui.tscn" id="1_3fham"]
+[ext_resource type="Script" uid="uid://cjklmes3h07pu" path="res://game/main_game.gd" id="1_7of5j"]
+
+[node name="MainGame" type="Node3D"]
+script = ExtResource("1_7of5j")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="UI" parent="." instance=ExtResource("1_3fham")]
+
+[connection signal="full_press" from="." to="UI/MapUi" method="_on_full_press"]
+[connection signal="partial_press" from="." to="UI/MapUi" method="_on_partial_press"]
+[connection signal="switch" from="." to="UI/MapUi" method="_on_switch"]
+[connection signal="trigger" from="." to="UI/MapUi" method="_on_trigger"]
+[connection signal="load_note" from="UI/MapUi" to="." method="_load_note"]
+
+[editable path="UI"]

@@ -21,8 +21,8 @@ func _process(delta):
 		full_press.emit()
 	if Input.is_action_just_pressed("switch"):
 		switch.emit()
-	#if Input.is_action_just_pressed("trigger"):
-		#trigger.emit()
+	if Input.is_action_just_pressed("trigger"):
+		trigger.emit()
 	# Note holds
 	for note in $UI/MapUi.get_held_notes():
 		if not note.was_missed:

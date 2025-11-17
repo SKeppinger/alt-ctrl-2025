@@ -6,11 +6,16 @@ var notes: Array[Note]
 # The map width (how much time of the song is shown on screen, in seconds)
 var map_width_time = 2.0
 # The map width (how much of the panel represents the above time)
-var map_width_size = size.x - 50
+var map_width_size = size.y - 150
 # The current time
 var time = 0.0
 # The margin of error for input in seconds
 var margin = 0.1
+
+# The rails texture
+var rails_text = preload("res://assets/rails.png")
+# Trigger note texture
+var trigger_note = preload("res://assets/note_circle.png")
 
 signal load_note
 
@@ -23,32 +28,20 @@ func get_held_notes():
 				held_notes.append(note)
 	return held_notes
 
-# Convert note start time to x value on map
-func get_note_x(note):
-	if time > note.start_time:
-		return 50
-	var dt = note.start_time - time
-	return ((dt / map_width_time) * map_width_size) + 50
-
-# Convert note depth to y value on map
+# Convert note start time to y value on map
 func get_note_y(note):
-	var y = 78
-	match note.depth:
-		References.Depth.PartialPush:
-			y += 252
-		References.Depth.FullPush:
-			y += 504
-	if note.type == References.NoteType.Trigger:
-		y += 25
-	return y
+	#if time > note.start_time:
+		#return map_width_size
+	var dt = note.start_time - time
+	return map_width_size - ((dt / map_width_time) * map_width_size)
 
 # Convert note duration to note width
 func get_note_width(note):
 	var width = (note.duration / map_width_time) * map_width_size
-	if time > note.start_time:
-		width -= (((time - note.start_time) / map_width_time) * map_width_size)
-	if get_note_x(note) + width > size.x:
-		return size.x - get_note_x(note)
+	#if time > note.start_time:
+		#width -= (((time - note.start_time) / map_width_time) * map_width_size)
+	#if get_note_y(note) - width < 0:
+		#return get_note_y(note)
 	return width
 
 # Load the song data from a csv file
@@ -84,19 +77,21 @@ func update_map(time_passed, new_score):
 
 # Draw notes to screen
 func _draw():
+	# Draw rails
+	draw_texture_rect(rails_text, Rect2(0, 0, size.x, size.y), false)
+	# Draw notes
 	for note in notes:
-		if not note.was_missed and not (note.was_hit and note.duration <= 0.25):
-			if time >= note.start_time - map_width_time and time <= note.start_time + note.duration:
+		if not note.was_missed:
+			if time >= note.start_time - map_width_time and time <= note.start_time + note.duration + 1:
 				match note.type:
 					References.NoteType.Push:
-						draw_rect(Rect2(Vector2(get_note_x(note), get_note_y(note)), Vector2(get_note_width(note), 100)), Color.RED)
+						draw_rect(Rect2(Vector2(350, get_note_y(note)), Vector2(100, -1 * get_note_width(note))), Color.RED)
 					References.NoteType.Trigger:
-						draw_rect(Rect2(Vector2(get_note_x(note), get_note_y(note)), Vector2(get_note_width(note), 50)), Color.BLUE)
+						draw_texture_rect(trigger_note, Rect2(Vector2((size.x / 2) - 58, get_note_y(note) - (get_note_width(note))), Vector2(116, -1 * get_note_width(note))), false)
 					References.NoteType.Switch:
-						draw_circle(Vector2(get_note_x(note), get_note_y(note) + 50), 50, Color.GREEN)
+						draw_circle(Vector2(350, get_note_y(note) - 100), 50, Color.GREEN)
 				if note.connect_to_next:
 					pass ## SOMEHOW connect the note to the next note's depth
-	draw_line(Vector2(50, 0), Vector2(50, 760), Color.WHITE)
 
 # Catch a full press input
 func _on_full_press():
