@@ -1,9 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://7wmdhgp5iqkh"]
+[gd_scene load_steps=11 format=3 uid="uid://7wmdhgp5iqkh"]
 
 [ext_resource type="PackedScene" uid="uid://2e3s4qvmjv2b" path="res://ui/ui.tscn" id="1_3fham"]
 [ext_resource type="Script" uid="uid://cjklmes3h07pu" path="res://game/main_game.gd" id="1_7of5j"]
 [ext_resource type="PackedScene" uid="uid://c1adbuq7anqvb" path="res://game/read_serial_input.tscn" id="2_g4axw"]
 [ext_resource type="PackedScene" uid="uid://d0upjyafp283b" path="res://models/room.fbx" id="4_t4f2l"]
+[ext_resource type="Texture2D" uid="uid://20qt65ywim7m" path="res://assets/duckbuildersposter.png" id="5_433cb"]
+[ext_resource type="Texture2D" uid="uid://cx3vklho8hw5y" path="res://assets/harvestposter.png" id="6_6o72v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o72v"]
+albedo_texture = ExtResource("5_433cb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v3atx"]
+material = SubResource("StandardMaterial3D_6o72v")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3atx"]
+albedo_texture = ExtResource("6_6o72v")
+uv1_scale = Vector3(-1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xheak"]
+material = SubResource("StandardMaterial3D_v3atx")
+flip_faces = true
+orientation = 0
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_7of5j")
@@ -13,13 +31,23 @@ script = ExtResource("1_7of5j")
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
-light_energy = 4.0
-omni_range = 10.0
+light_energy = 12.0
+omni_range = 4096.0
 
 [node name="UI" parent="." instance=ExtResource("1_3fham")]
 
 [node name="room" parent="." instance=ExtResource("4_t4f2l")]
-transform = Transform3D(-0.0003560805, 0, -0.5999999, 0, 0.6, 0, 0.5999999, 0, -0.0003560805, 0.36566377, -1.4405346, -4.410824)
+transform = Transform3D(-0.0017804025, 0, -2.9999995, 0, 3, 0, 2.9999995, 0, -0.0017804025, 4.403136, -8.483599, -28.582262)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="room"]
+transform = Transform3D(-0.0009891125, 0, 1.6666665, 0, 1.6666667, 0, -1.6666665, 0, -0.0009891125, -5.998901, 5.964959, -2.102652)
+mesh = SubResource("PlaneMesh_v3atx")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="room"]
+transform = Transform3D(-0.0009891125, 0, 1.6666665, 0, 1.6666667, 0, -1.6666665, 0, -0.0009891125, -2.4739966, 5.6702604, -6.290821)
+mesh = SubResource("PlaneMesh_xheak")
+skeleton = NodePath("../..")
 
 [connection signal="trigger" from="." to="UI/MapUi" method="_on_trigger"]
 [connection signal="drill_press" from="ReadSerialInput" to="." method="_on_drill_press"]

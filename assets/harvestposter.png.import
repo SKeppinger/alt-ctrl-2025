@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2bvb8duk5ory"
-path.s3tc="res://.godot/imported/Box Texture.png-cd7869e69da19cbcdea4ca8c5746803f.s3tc.ctex"
+uid="uid://cx3vklho8hw5y"
+path.s3tc="res://.godot/imported/harvestposter.png-2f8082b995e437b356073f808ea52314.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/Alt-Ctrl/Box Texture.png"
-dest_files=["res://.godot/imported/Box Texture.png-cd7869e69da19cbcdea4ca8c5746803f.s3tc.ctex"]
+source_file="res://assets/harvestposter.png"
+dest_files=["res://.godot/imported/harvestposter.png-2f8082b995e437b356073f808ea52314.s3tc.ctex"]
 
 [params]
 

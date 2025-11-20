@@ -20,9 +20,9 @@ func _process(delta):
 		press_timer = 0
 	for child in $Screw.get_children():
 		child.visible = false
-	if drill_controller_states.force_sensor_0_value < 500:
+	if drill_controller_states.force_sensor_0_value < 820:
 		$Screw/FullPush.visible = true
-	elif drill_controller_states.force_sensor_0_value < 800:
+	elif drill_controller_states.force_sensor_0_value < 940:
 		$Screw/PartialPush.visible = true
 	else:
 		$Screw/NoPush.visible = true

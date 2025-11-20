@@ -16,7 +16,7 @@ func _ready() -> void:
 		print("Controller Opened Successfully")
 	else:
 		print("Error: Cannot open serial port: ", port)
-		#get_tree().quit()
+		get_tree().quit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

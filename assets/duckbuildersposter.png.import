@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2bvb8duk5ory"
-path.s3tc="res://.godot/imported/Box Texture.png-cd7869e69da19cbcdea4ca8c5746803f.s3tc.ctex"
+uid="uid://20qt65ywim7m"
+path.s3tc="res://.godot/imported/duckbuildersposter.png-0860994a833193388c175325f9a8d580.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/Alt-Ctrl/Box Texture.png"
-dest_files=["res://.godot/imported/Box Texture.png-cd7869e69da19cbcdea4ca8c5746803f.s3tc.ctex"]
+source_file="res://assets/duckbuildersposter.png"
+dest_files=["res://.godot/imported/duckbuildersposter.png-0860994a833193388c175325f9a8d580.s3tc.ctex"]
 
 [params]
 
