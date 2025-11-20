@@ -1,10 +1,8 @@
 extends Node3D
 
 var score_val = 0
+var start_timer = 3
 
-signal partial_press
-signal full_press
-signal switch
 signal trigger
 
 ## TEMPORARY
@@ -13,16 +11,19 @@ func _ready():
 
 ## TEMPORARY
 func _process(delta):
-	$UI/MapUi.update_map(delta, score_val)
-	# Initial note hits
-	if Input.is_action_just_pressed("partial_press"):
-		partial_press.emit()
-	if Input.is_action_just_pressed("full_press"):
-		full_press.emit()
-	if Input.is_action_just_pressed("switch"):
-		switch.emit()
-	if Input.is_action_just_pressed("trigger"):
-		trigger.emit()
+	if start_timer > -1:
+		start_timer -= delta
+		if start_timer <= 3 and start_timer > 2:
+			$UI/MapUi/Timer.text = "3"
+		elif start_timer <= 2 and start_timer > 1:
+			$UI/MapUi/Timer.text = "2"
+		elif start_timer <= 1 and start_timer > 0:
+			$UI/MapUi/Timer.text = "1"
+		elif start_timer > -1:
+			$UI/MapUi/Timer.text = "GO!"
+	else:
+		$UI/MapUi/Timer.text = ""
+		$UI/MapUi.update_map(delta, score_val)
 	# Note holds
 	for note in $UI/MapUi.get_held_notes():
 		if not note.was_missed:
@@ -30,22 +31,22 @@ func _process(delta):
 				References.NoteType.Push:
 					match note.depth:
 						References.Depth.NoPush:
-							if Input.is_action_pressed("full_press") or Input.is_action_pressed("partial_press"):
+							if not drill_controller_states.is_not_pushed():
 								note.miss()
 							elif not note.was_hit:
 								note.hit()
 						References.Depth.PartialPush:
-							if not Input.is_action_pressed("partial_press"):
+							if not drill_controller_states.is_partially_pushed():
 								note.miss()
 							elif not note.was_hit:
 								note.hit()
 						References.Depth.FullPush:
-							if not Input.is_action_pressed("full_press"):
+							if not drill_controller_states.is_fully_pushed():
 								note.miss()
 							elif not note.was_hit:
 								note.hit()
 				References.NoteType.Trigger:
-					if not Input.is_action_pressed("trigger"):
+					if not drill_controller_states.is_drill_held():
 						note.miss()
 					elif not note.was_hit:
 						note.hit()

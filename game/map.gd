@@ -11,11 +11,23 @@ var map_width_size = size.y - 150
 var time = 0.0
 # The margin of error for input in seconds
 var margin = 0.1
+# The width of a note for no screw push
+var no_push_width = 180
+# The width of a note for partial screw push
+var partial_push_width = 240
+# The width of a note for full screw push
+var full_push_width = 560
 
 # The rails texture
 var rails_text = preload("res://assets/rails.png")
 # Trigger note texture
 var trigger_note = preload("res://assets/note_circle.png")
+# Trigger held note texture
+var trigger_hold_note = preload("res://assets/note_rectangle_short_flat.png")
+# Screw note texture
+var screw_note = preload("res://assets/note_red.png")
+# Screw held note texture
+var screw_note_hold = preload("res://assets/note_rectangle_long_flat_red.png")
 
 signal load_note
 
@@ -85,29 +97,42 @@ func _draw():
 			if time >= note.start_time - map_width_time and time <= note.start_time + note.duration + 1:
 				match note.type:
 					References.NoteType.Push:
-						draw_rect(Rect2(Vector2(350, get_note_y(note)), Vector2(100, -1 * get_note_width(note))), Color.RED)
+						var text = screw_note
+						if note.duration > 0.25:
+							text = screw_note_hold
+						match note.depth:
+							References.Depth.NoPush:
+								draw_texture_rect(text, Rect2(Vector2((size.x / 2) - (no_push_width / 2), get_note_y(note) - (get_note_width(note))), Vector2(no_push_width, -1 * get_note_width(note))), false)
+							References.Depth.PartialPush:
+								draw_texture_rect(text, Rect2(Vector2((size.x / 2) - (partial_push_width / 2), get_note_y(note) - (get_note_width(note))), Vector2(partial_push_width, -1 * get_note_width(note))), false)
+							References.Depth.FullPush:
+								draw_texture_rect(text, Rect2(Vector2((size.x / 2) - (full_push_width / 2), get_note_y(note) - (get_note_width(note))), Vector2(full_push_width, -1 * get_note_width(note))), false)
 					References.NoteType.Trigger:
-						draw_texture_rect(trigger_note, Rect2(Vector2((size.x / 2) - 58, get_note_y(note) - (get_note_width(note))), Vector2(116, -1 * get_note_width(note))), false)
+						if note.duration <= 0.25:
+							draw_texture_rect(trigger_note, Rect2(Vector2((size.x / 2) - 58, get_note_y(note) - (get_note_width(note))), Vector2(116, 116)), false)
+						else:
+							draw_texture_rect(trigger_hold_note, Rect2(Vector2((size.x / 2) - 40, get_note_y(note) - (get_note_width(note))), Vector2(80, -1 * get_note_width(note))), false)
 					References.NoteType.Switch:
 						draw_circle(Vector2(350, get_note_y(note) - 100), 50, Color.GREEN)
 				if note.connect_to_next:
 					pass ## SOMEHOW connect the note to the next note's depth
 
-# Catch a full press input
-func _on_full_press():
+# Check screw depth
+func _process(_delta):
 	for note in notes:
 		if time > note.start_time - margin and time < note.start_time + margin:
 			if note.type == References.NoteType.Push and note.depth == References.Depth.FullPush and not note.was_hit:
-				note.hit()
-				return
-
-# Catch a partial press input
-func _on_partial_press():
-	for note in notes:
-		if time > note.start_time - margin and time < note.start_time + margin:
-			if note.type == References.NoteType.Push and note.depth == References.Depth.PartialPush and not note.was_hit:
-				note.hit()
-				return
+				if drill_controller_states.is_fully_pushed():
+					note.hit()
+					return
+			elif note.type == References.NoteType.Push and note.depth == References.Depth.PartialPush and not note.was_hit:
+				if drill_controller_states.is_partially_pushed():
+					note.hit()
+					return
+			elif note.type == References.NoteType.Push and note.depth == References.Depth.NoPush and not note.was_hit:
+				if drill_controller_states.is_not_pushed():
+					note.hit()
+					return
 
 # Catch a trigger input
 func _on_trigger():

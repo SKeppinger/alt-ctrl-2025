@@ -1,7 +1,7 @@
 extends Node2D
 
 var serial: GdSerial
-var port = "COM4" # changes based on system and whether we are using arduino serial or rs232
+var port = "COM5" # changes based on system and whether we are using arduino serial or rs232
 
 signal drill_press # Signal to emit when the drill button is first pressed
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 		print("Controller Opened Successfully")
 	else:
 		print("Error: Cannot open serial port: ", port)
-		get_tree().quit()
+		#get_tree().quit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

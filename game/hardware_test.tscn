@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3 uid="uid://cohfocye4vvhk"]
+
+[ext_resource type="Script" uid="uid://craxmlx7lkw8p" path="res://game/hardware_test.gd" id="1_psdyw"]
+[ext_resource type="PackedScene" uid="uid://c1adbuq7anqvb" path="res://game/read_serial_input.tscn" id="2_ogn4w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hgpqu"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_3w2ja"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_psdyw"]
+font_size = 48
+
+[node name="HardwareTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_psdyw")
+
+[node name="ReadSerialInput" parent="." instance=ExtResource("2_ogn4w")]
+
+[node name="Drill" type="Label" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_right = 407.0
+offset_bottom = 67.0
+text = "Drill Trigger"
+label_settings = SubResource("LabelSettings_hgpqu")
+
+[node name="Held" type="Label" parent="Drill"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.5
+offset_top = 66.0
+offset_right = 53.5
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Held"
+label_settings = SubResource("LabelSettings_3w2ja")
+
+[node name="Pressed" type="Label" parent="Drill"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.5
+offset_top = 199.0
+offset_right = 53.5
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pressed"
+label_settings = SubResource("LabelSettings_3w2ja")
+
+[node name="Screw" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -418.0
+offset_right = -125.0
+offset_bottom = 67.0
+grow_horizontal = 0
+text = "Screw Depth"
+label_settings = SubResource("LabelSettings_psdyw")
+
+[node name="NoPush" type="Label" parent="Screw"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.5
+offset_top = 66.0
+offset_right = 53.5
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "No Push"
+label_settings = SubResource("LabelSettings_3w2ja")
+
+[node name="PartialPush" type="Label" parent="Screw"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.5
+offset_top = 199.0
+offset_right = 96.5
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Partial Push"
+label_settings = SubResource("LabelSettings_3w2ja")
+
+[node name="FullPush" type="Label" parent="Screw"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = 331.0
+offset_right = 139.0
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Full Push"
+label_settings = SubResource("LabelSettings_3w2ja")
+horizontal_alignment = 1
+
+[connection signal="drill_press" from="ReadSerialInput" to="." method="_on_read_serial_input_drill_press"]

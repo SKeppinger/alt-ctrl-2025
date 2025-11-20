@@ -1,21 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://7wmdhgp5iqkh"]
+[gd_scene load_steps=5 format=3 uid="uid://7wmdhgp5iqkh"]
 
 [ext_resource type="PackedScene" uid="uid://2e3s4qvmjv2b" path="res://ui/ui.tscn" id="1_3fham"]
 [ext_resource type="Script" uid="uid://cjklmes3h07pu" path="res://game/main_game.gd" id="1_7of5j"]
+[ext_resource type="PackedScene" uid="uid://c1adbuq7anqvb" path="res://game/read_serial_input.tscn" id="2_g4axw"]
+[ext_resource type="PackedScene" uid="uid://d0upjyafp283b" path="res://models/room.fbx" id="4_t4f2l"]
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_7of5j")
 
+[node name="ReadSerialInput" parent="." instance=ExtResource("2_g4axw")]
+
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+light_energy = 4.0
+omni_range = 10.0
 
 [node name="UI" parent="." instance=ExtResource("1_3fham")]
 
-[connection signal="full_press" from="." to="UI/MapUi" method="_on_full_press"]
-[connection signal="partial_press" from="." to="UI/MapUi" method="_on_partial_press"]
-[connection signal="switch" from="." to="UI/MapUi" method="_on_switch"]
+[node name="room" parent="." instance=ExtResource("4_t4f2l")]
+transform = Transform3D(-0.0003560805, 0, -0.5999999, 0, 0.6, 0, 0.5999999, 0, -0.0003560805, 0.36566377, -1.4405346, -4.410824)
+
 [connection signal="trigger" from="." to="UI/MapUi" method="_on_trigger"]
+[connection signal="drill_press" from="ReadSerialInput" to="." method="_on_drill_press"]
 [connection signal="load_note" from="UI/MapUi" to="." method="_load_note"]
 
 [editable path="UI"]
+[editable path="room"]
