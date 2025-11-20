@@ -1,9 +1,300 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck6neoc2q7wsy"]
+[gd_scene load_steps=15 format=3 uid="uid://ck6neoc2q7wsy"]
 
 [ext_resource type="Script" uid="uid://d0pntlyqdys8p" path="res://game/map.gd" id="1_raqrw"]
+[ext_resource type="Texture2D" uid="uid://dc02m48tepp0l" path="res://assets/popup_text/popup_perfect.png" id="2_glswm"]
+[ext_resource type="Texture2D" uid="uid://ckvfjjrocrm6u" path="res://assets/screw_meter_box.png" id="2_h7vf8"]
+[ext_resource type="Texture2D" uid="uid://boo45bq1scbpn" path="res://assets/screw_meter.png" id="3_wuccv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_raqrw"]
 font_size = 256
+
+[sub_resource type="Animation" id="Animation_h7vf8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TriggerFeedback/TriggerFeedback:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 0.962)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TriggerFeedback/TriggerFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 610)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TriggerFeedback/TriggerFeedback:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pl7ga"]
+resource_name = "reset_trigger"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TriggerFeedback/TriggerFeedback:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 0.962)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TriggerFeedback/TriggerFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 610)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TriggerFeedback/TriggerFeedback:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_glswm"]
+resource_name = "trigger"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TriggerFeedback/TriggerFeedback:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.158, 1), Vector2(5, 1.203), Vector2(4, 0.962)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TriggerFeedback/TriggerFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(240, 610), Vector2(220, 610), Vector2(240, 610)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TriggerFeedback/TriggerFeedback:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_wuccv"]
+resource_name = "screw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrewFeedback/ScrewFeedback:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrewFeedback/ScrewFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 300), Vector2(620, 300), Vector2(640, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScrewFeedback/ScrewFeedback:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.158, 1), Vector2(5, 1.203), Vector2(4, 0.962)]
+}
+
+[sub_resource type="Animation" id="Animation_vjenl"]
+resource_name = "reset_screw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrewFeedback/ScrewFeedback:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrewFeedback/ScrewFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScrewFeedback/ScrewFeedback:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.158, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wuccv"]
+_data = {
+&"RESET": SubResource("Animation_h7vf8"),
+&"reset_screw": SubResource("Animation_vjenl"),
+&"reset_trigger": SubResource("Animation_pl7ga"),
+&"screw": SubResource("Animation_wuccv"),
+&"trigger": SubResource("Animation_glswm")
+}
+
+[sub_resource type="Animation" id="Animation_0l5a7"]
+resource_name = "screw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrewFeedback/ScrewFeedback:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.158, 1), Vector2(5, 1.203), Vector2(4.158, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrewFeedback/ScrewFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 300), Vector2(620, 300), Vector2(640, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScrewFeedback/ScrewFeedback:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_yfqx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrewFeedback/ScrewFeedback:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.158, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrewFeedback/ScrewFeedback:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScrewFeedback/ScrewFeedback:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3f8sl"]
+_data = {
+&"RESET": SubResource("Animation_yfqx4"),
+&"screw": SubResource("Animation_0l5a7")
+}
 
 [node name="MapUi" type="Panel"]
 z_index = -1
@@ -13,15 +304,10 @@ script = ExtResource("1_raqrw")
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.0
-offset_right = 105.0
+offset_left = 6.0
+offset_right = 134.0
 offset_bottom = 23.0
-grow_horizontal = 2
 text = "Score: 0"
-horizontal_alignment = 1
 
 [node name="Timer" type="Label" parent="."]
 layout_mode = 1
@@ -40,3 +326,70 @@ text = "3"
 label_settings = SubResource("LabelSettings_raqrw")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScrewBox" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 2.0
+offset_right = 153.0
+offset_bottom = 759.0
+grow_horizontal = 0
+texture = ExtResource("2_h7vf8")
+expand_mode = 1
+
+[node name="Screw" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 2.0
+offset_right = 153.0
+offset_bottom = 759.0
+grow_horizontal = 0
+texture = ExtResource("3_wuccv")
+expand_mode = 1
+
+[node name="TriggerFeedback" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wuccv")
+}
+
+[node name="TriggerFeedback" type="TextureRect" parent="TriggerFeedback"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -150.0
+offset_right = -360.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 0.962)
+texture = ExtResource("2_glswm")
+expand_mode = 1
+
+[node name="ScrewFeedback" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3f8sl")
+}
+
+[node name="ScrewFeedback" type="TextureRect" parent="ScrewFeedback"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -460.0
+offset_right = 40.0
+offset_bottom = -420.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4.158, 1)
+texture = ExtResource("2_glswm")
+expand_mode = 1

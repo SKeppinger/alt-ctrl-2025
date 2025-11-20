@@ -37,7 +37,7 @@ omni_range = 4096.0
 [node name="UI" parent="." instance=ExtResource("1_3fham")]
 
 [node name="room" parent="." instance=ExtResource("4_t4f2l")]
-transform = Transform3D(-0.0017804025, 0, -2.9999995, 0, 3, 0, 2.9999995, 0, -0.0017804025, 4.403136, -8.483599, -28.582262)
+transform = Transform3D(-0.0017804025, 0, -2.9999995, 0, 3, 0, 2.9999995, 0, -0.0017804025, 18.553926, -8.483599, -28.582262)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="room"]
 transform = Transform3D(-0.0009891125, 0, 1.6666665, 0, 1.6666667, 0, -1.6666665, 0, -0.0009891125, -5.998901, 5.964959, -2.102652)
@@ -49,9 +49,14 @@ transform = Transform3D(-0.0009891125, 0, 1.6666665, 0, 1.6666667, 0, -1.6666665
 mesh = SubResource("PlaneMesh_xheak")
 skeleton = NodePath("../..")
 
+[node name="music" type="AudioStreamPlayer" parent="."]
+
+[connection signal="screw_feedback" from="." to="UI/MapUi" method="_on_screw_feedback"]
 [connection signal="trigger" from="." to="UI/MapUi" method="_on_trigger"]
+[connection signal="trigger_feedback" from="." to="UI/MapUi" method="_on_trigger_feedback"]
 [connection signal="drill_press" from="ReadSerialInput" to="." method="_on_drill_press"]
 [connection signal="load_note" from="UI/MapUi" to="." method="_load_note"]
+[connection signal="start_music" from="UI/MapUi" to="." method="_on_start_music"]
 
 [editable path="UI"]
 [editable path="room"]

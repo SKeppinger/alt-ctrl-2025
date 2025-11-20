@@ -8,6 +8,11 @@ class_name Note
 @export var connect_to_next = false
 
 var was_hit = false
+var early = false
+var late = false
+var okay = false
+var good = false
+var perfect = false
 var was_missed = false
 var held_time = 0.0
 var hold_scores = 0
@@ -15,15 +20,39 @@ var hold_scores = 0
 signal hit_note
 
 # Hit the note
-func hit():
-	print("hit!")
-	hit_note.emit()
-	hold_scores += 1
-	was_hit = true
+func hit(time):
+	if not was_hit:
+		var time_difference = time - start_time
+		if time == -1:
+			time_difference = 100 # for held notes
+		if time_difference == 100:
+			perfect = false
+			good = false
+			okay = false
+			early = false
+			late = false
+		elif abs(time_difference) <= 0.06:
+			perfect = true
+			print("perfect")
+		elif abs(time_difference) <= 0.09:
+			good = true
+			print("good")
+		elif abs(time_difference) <= 0.12:
+			okay = true
+			print("okay")
+		else:
+			if time_difference < 0:
+				early = true
+				print("early")
+			else:
+				late = true
+				print("late")
+		hit_note.emit(self, perfect, good, okay, early, late)
+		hold_scores += 1
+		was_hit = true
 
 # Miss the note
 func miss():
-	print("miss!")
 	hold_scores = 0
 	was_missed = true
 
