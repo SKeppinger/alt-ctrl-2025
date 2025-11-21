@@ -13,7 +13,7 @@ func is_not_pushed():
 	return force_sensor_0_value >= 940 and force_sensor_1_value >= 940
 
 func is_partially_pushed():
-	return (force_sensor_0_value < 940 and force_sensor_0_value >= 820) or (force_sensor_1_value < 940 and force_sensor_1_value >= 820)
+	return (force_sensor_0_value < 940 and force_sensor_0_value >= 885) or (force_sensor_1_value < 940 and force_sensor_1_value >= 885)
 
 func is_fully_pushed():
-	return force_sensor_0_value < 820 or force_sensor_1_value < 820
+	return force_sensor_0_value < 885 or force_sensor_1_value < 885
