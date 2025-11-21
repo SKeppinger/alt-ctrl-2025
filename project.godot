@@ -24,6 +24,7 @@ drill_controller_states="*res://game/drill_controller_states.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=760
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

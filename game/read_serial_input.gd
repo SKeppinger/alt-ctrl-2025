@@ -1,7 +1,7 @@
 extends Node2D
 
 var serial: GdSerial
-var port = "COM5" # changes based on system and whether we are using arduino serial or rs232
+var port = "COM3" # changes based on system and whether we are using arduino serial or rs232
 
 signal drill_press # Signal to emit when the drill button is first pressed
 
